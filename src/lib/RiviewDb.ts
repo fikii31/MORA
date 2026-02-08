@@ -26,7 +26,7 @@ export interface ReviewData {
 export const addReview = async (review: Omit<ReviewData, 'id' | 'created_at'>) => {
   try {
     const { data, error } = await supabase
-      .from('db_reviews')
+      .from('DB_Reviews')
       .insert([
         {
           nama: review.nama,
@@ -53,7 +53,7 @@ export const addReview = async (review: Omit<ReviewData, 'id' | 'created_at'>) =
 export const getReviews = async (): Promise<ReviewData[]> => {
   try {
     const { data, error } = await supabase
-      .from('db_reviews')
+      .from('DB_Reviews')
       .select('*')
       .order('created_at', { ascending: false })
 
@@ -72,7 +72,7 @@ export const getReviews = async (): Promise<ReviewData[]> => {
 export const deleteReview = async (reviewId: string) => {
   try {
     const { error } = await supabase
-      .from('db_reviews')
+      .from('DB_Reviews')
       .delete()
       .eq('id', reviewId)
 
@@ -89,10 +89,10 @@ export const deleteReview = async (reviewId: string) => {
 // Subscribe to real-time updates
 export const subscribeToReviews = (callback: (reviews: ReviewData[]) => void) => {
   const subscription = supabase
-    .channel('public:db_reviews')
+    .channel('public:DB_Reviews')
     .on(
       'postgres_changes',
-      { event: '*', schema: 'public', table: 'db_reviews' },
+      { event: '*', schema: 'public', table: 'DB_Reviews' },
       () => {
         // Fetch updated reviews when there's a change
         getReviews().then(callback)
