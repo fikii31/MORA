@@ -1,21 +1,12 @@
 import './Rating.css';
-import { useState } from 'react';
-
-interface ReviewData {
-  id: string;
-  name: string;
-  email: string;
-  rating: number;
-  message: string;
-  date: string;
-}
+import { useState, useEffect } from 'react';
+import { addReview, getReviews } from '../lib/RiviewDb';
+import type { ReviewData } from '../lib/RiviewDb';
 
 const Rating = () => {
   const [showForm, setShowForm] = useState(false);
-  const [reviews, setReviews] = useState<ReviewData[]>(() => {
-    const savedReviews = localStorage.getItem('moraReviews');
-    return savedReviews ? JSON.parse(savedReviews) : [];
-  });
+  const [reviews, setReviews] = useState<ReviewData[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [formData, setFormData] = useState({
     name: '',
@@ -23,7 +14,30 @@ const Rating = () => {
     rating: 5,
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const reviewsPerPage = 3;
+
+  // Load reviews from Supabase on component mount
+  useEffect(() => {
+    const loadReviews = async () => {
+      setIsLoading(true);
+      try {
+        const data = await getReviews();
+        setReviews(data);
+      } catch (err) {
+        console.error('Failed to load reviews:', err);
+        // Fallback to localStorage if Supabase fetch fails
+        const savedReviews = localStorage.getItem('moraReviews');
+        if (savedReviews) {
+          setReviews(JSON.parse(savedReviews));
+        }
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadReviews();
+  }, []);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -42,7 +56,7 @@ const Rating = () => {
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!formData.name || !formData.email || !formData.message) {
@@ -50,29 +64,48 @@ const Rating = () => {
       return;
     }
 
-    const newReview: ReviewData = {
-      id: Date.now().toString(),
-      name: formData.name,
-      email: formData.email,
-      rating: formData.rating,
-      message: formData.message,
-      date: new Date().toLocaleDateString('id-ID'),
-    };
+    setIsSubmitting(true);
+    try {
+      // Add review to Supabase
+      const result = await addReview({
+        nama: formData.name,
+        email: formData.email,
+        rating: formData.rating,
+        message: formData.message,
+        date: new Date().toLocaleDateString('id-ID'),
+      });
 
-    const updatedReviews = [newReview, ...reviews];
-    setReviews(updatedReviews);
-    localStorage.setItem('moraReviews', JSON.stringify(updatedReviews));
-    setCurrentSlide(0);
+      if (result && result.length > 0) {
+        // Add the new review to the local state
+        const newReview: ReviewData = {
+          id: result[0].id,
+          nama: formData.name,
+          email: formData.email,
+          rating: formData.rating,
+          message: formData.message,
+          date: new Date().toLocaleDateString('id-ID'),
+          created_at: result[0].created_at,
+        };
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      rating: 5,
-      message: '',
-    });
-    setShowForm(false);
-    alert('Terima kasih untuk review Anda!');
+        setReviews([newReview, ...reviews]);
+        setCurrentSlide(0);
+
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          rating: 5,
+          message: '',
+        });
+        setShowForm(false);
+        alert('Terima kasih untuk review Anda!');
+      }
+    } catch (err) {
+      console.error('Error submitting review:', err);
+      alert('Gagal mengirim review. Silakan coba lagi.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleNextSlide = () => {
@@ -123,7 +156,11 @@ const Rating = () => {
 
         {/* Reviews Carousel */}
         <div className="reviews-carousel-container">
-          {reviews.length === 0 ? (
+          {isLoading ? (
+            <div className="empty-state">
+              <p>Loading reviews...</p>
+            </div>
+          ) : reviews.length === 0 ? (
             <div className="empty-state">
               <p>Belum ada review. Jadilah yang pertama memberikan review!</p>
             </div>
@@ -142,7 +179,7 @@ const Rating = () => {
                   <div key={review.id} className="review-card">
                     <div className="review-header">
                       <div className="review-info">
-                        <h3 className="review-name">{review.name}</h3>
+                        <h3 className="review-name">{review.nama}</h3>
                         <p className="review-date">{review.date}</p>
                       </div>
                       {renderStars(review.rating)}
@@ -238,8 +275,8 @@ const Rating = () => {
               />
             </div>
 
-            <button type="submit" className="btn-submit">
-              Submit Review
+            <button type="submit" className="btn-submit" disabled={isSubmitting}>
+              {isSubmitting ? 'Mengirim...' : 'Submit Review'}
             </button>
           </form>
         )}
