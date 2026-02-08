@@ -1,0 +1,273 @@
+.html {
+  scroll-behavior: smooth;
+}
+
+.visit-section {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 55vh;
+  /*min-width: 100%;*/
+  background-color: rgb(232, 203, 98);
+  color: black;
+  padding: 0 20px;
+}
+
+.visit-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.visit-info {
+  display: flex;
+  gap: 40px;
+}
+
+.visit-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.visit-title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: -10px;
+}
+
+.visit-description {
+  position: relative;
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: black;
+  margin-bottom: -10px;
+}
+
+.visit-address h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: -10px;
+}
+
+.visit-address p {
+  font-size: 1.2rem;
+  margin-bottom: -10px;
+  line-height: 1.5;
+}
+
+.visit-hours p {
+  font-size: 1.2rem;
+  margin-bottom: -10px;
+  margin-top: 10px;
+  line-height: 1.5;
+}
+
+.visit-image {
+  position: relative;
+  display: flex;
+  bottom: 100px;
+  left: 350px;
+  height: 250px;
+  width: 450px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.social-media {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  bottom: 200px;
+  gap: 20px;
+  padding: 20px 0;
+}
+
+.social-media a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+  background-color: rgba(255, 255, 255, 0.679);
+  color: black;
+  border-radius: 10px;
+  font-size: 24px;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.social-media a:hover {
+  transform: scale(1.1);
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.social-media a i {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .visit-section {
+    padding: 30px 20px;
+    min-height: auto;
+  }
+
+  .visit-image {
+    height: 300px;
+    width: 100%;
+  }
+
+  .visit-info {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .visit-title {
+    font-size: 1.3rem;
+  }
+
+  .visit-description {
+    font-size: 1.1rem;
+  }
+
+  .visit-address h3 {
+    font-size: 1.2rem;
+  }
+
+  .visit-address p {
+    font-size: 1.1rem;
+  }
+
+  .visit-hours p {
+    font-size: 1.1rem;
+  }
+}
+
+/* Mobile Tablet */
+@media (max-width: 768px) {
+  .visit-section {
+    padding: 25px 15px;
+    min-height: auto;
+  }
+
+  .visit-info {
+    gap: 15px;
+  }
+
+  .visit-image {
+    height: 250px;
+    width: 100%;
+  }
+
+  .visit-title {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+
+  .visit-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 8px;
+  }
+
+  .visit-address h3 {
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+  }
+
+  .visit-address p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+
+  .visit-hours p {
+    font-size: 1rem;
+    margin-bottom: 8px;
+    margin-top: 8px;
+  }
+
+  .social-media {
+    gap: 15px;
+  }
+
+  .social-media a {
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .visit-section {
+    padding: 10px 5px;
+    min-height: 60vh;
+    
+  }
+
+  .visit-container {
+    position: relative;
+    left:10px;
+    max-width: 400px;
+    width: 300px;
+    
+  }
+  .visit-image {
+    position: relative;
+    height: 100px;
+    width: 150px;
+    top: 10px;
+    left: 4px;
+    border-radius: 5px;
+  }
+
+  .visit-title {
+    font-size: 1.1rem;
+    margin-bottom: -10px;
+  }
+
+  .visit-description {
+    font-size: 0.95rem;
+    width: 350px;
+    line-height: 1.4;
+    margin-bottom: -10px;
+  }
+
+  .visit-address h3 {
+    font-size: 1rem;
+    margin-bottom: -10px;
+  }
+
+  .visit-address p {
+    font-size: 0.95rem;
+    margin-bottom: -10px;
+  }
+  .visit-hours h3{
+    font-size: 1rem;
+    margin-bottom: -6px;
+  }
+
+  .visit-hours p {
+    font-size: 0.95rem;
+    margin-bottom: -6px;
+  }
+
+  .social-media {
+    position: relative;
+    top: 15px;
+    left: 6px;
+    gap: 10px;
+    padding: 15px 0;
+  }
+
+  .social-media a {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+    border-radius: 8px;
+  }
+}

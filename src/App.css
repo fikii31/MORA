@@ -1,0 +1,10 @@
+.App{
+  text-align: center;
+}
+.section{
+  position: relative;
+  max-width: 1120px;
+  min-height: 100vh;
+  margin: 0 auto;
+  margin-bottom: 80px;
+}

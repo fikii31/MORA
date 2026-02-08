@@ -1,0 +1,507 @@
+/* Full Page Menu */
+.Seemenu-fullpage {
+    min-height: 100vh;
+    background-color: white;
+    padding-top: 10px;
+}
+
+.menu-header {
+    padding: 20px 40px;
+    border-bottom: 1px solid black;
+}
+
+.btn-back {
+    background-color: black;
+    color: white;
+    border: 2px solid black;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-back:hover {
+    background-color: transparent;
+    color: black;
+}
+
+.btn-back:active {
+    transform: translateX(0);
+}
+
+/* Modal Styling */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 90%;
+    animation: slideIn 0.3s ease-in-out;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid black;
+}
+
+.modal-header h2 {
+    margin: 0;
+    color: black;
+    font-size: 24px;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: black;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.modal-close:hover {
+    color: #c17817;
+}
+
+.order-form {
+    padding: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: black;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 14px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: black;
+    box-shadow: 0 0 5px rgba(193, 120, 23, 0.3);
+}
+
+.form-group:last-child {
+    display: flex;
+    gap: 10px;
+    margin-top: 30px;
+}
+
+.btn-submit,
+.btn-cancel {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-submit {
+    background-color: transparent;
+    color: black;
+}
+
+.btn-submit:hover {
+    background-color: black;
+    color: white;
+}
+
+.btn-cancel {
+    background-color: black;
+    color: white;
+}
+
+.btn-cancel:hover {
+    background-color: transparent;
+    color: black;
+}
+
+/* Menu Section Styling */
+.Seemenu {
+    /*padding: 60px 20px;*/
+    text-align: center;
+    background-color: white;
+}
+
+.Seemenu-title {
+    font-size: 36px;
+    color: black;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.Seemenu-description {
+    font-size: 16px;
+    color: black;
+    margin-bottom: 30px;
+}
+
+/* Category Filter */
+.category-filter {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+}
+
+.category-btn {
+    padding: 10px 25px;
+    border: 2px solid black;
+    background-color: transparent;
+    color: black;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.category-btn:hover {
+    background-color: black;
+    color: white;
+    box-shadow: 0 4px 12px rgba(193, 120, 23, 0.3);
+}
+
+.category-btn.active {
+    background-color: black;
+    color: white;
+    box-shadow: 0 4px 12px rgba(193, 120, 23, 0.3);
+}
+
+.Menu-grid {
+    position:relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 0.5fr));
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-card {
+    background: white;
+    max-height: 250px;
+    padding: 100px 12px;
+    border: 2px solid black;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-card:hover {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+.menu-image{
+    position: relative;
+    height: 100px;
+    width: 100px;
+}
+.namemenu {
+    font-size: 1.2rem;
+    font-weight: 500;
+    font-weight: bold;
+    color: #000000;
+
+}
+
+.desc-menu {
+    position: relative;
+    font-size: 1rem;
+    color: black;
+    max-width: 600px;
+}
+
+.price-menu {
+    position: relative;
+    font-size: 1.3rem;
+    color: black;
+    font-weight: 600;
+}
+
+.Order {
+    position:relative;
+    background-color: transparent;
+    color: #000000;
+    border: 1px solid #000000;
+    border-radius: 12px;
+    padding: 12px 12px;
+    font-size: 0.9rem;
+    letter-spacing: 0.08rem;
+    bottom: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.Order:hover {
+    background-color: black;
+    color: white;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .Seemenu-fullpage {
+    padding-top: 5px;
+  }
+
+  .menu-header {
+    padding: 15px 30px;
+  }
+
+  .Seemenu-title {
+    font-size: 32px;
+  }
+
+  .Menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  .modal-content {
+    max-width: 450px;
+  }
+}
+
+/* Mobile Tablet */
+@media (max-width: 768px) {
+  .Seemenu-fullpage {
+    min-height: auto;
+    padding-top: 10px;
+  }
+
+  .menu-header {
+    padding: 15px 20px;
+  }
+
+  .btn-back {
+    padding: 8px 16px;
+    font-size: 14px;
+  }
+
+  .Seemenu {
+    padding: 20px 15px;
+  }
+
+  .Seemenu-title {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .Seemenu-description {
+    font-size: 14px;
+    margin-bottom: 20px;
+  }
+
+  .category-filter {
+    gap: 10px;
+    margin-bottom: 30px;
+  }
+
+  .category-btn {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+
+  .Menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .menu-card {
+    padding: 60px 10px;
+    max-height: auto;
+  }
+
+  .menu-image {
+    height: 80px;
+    width: 80px;
+  }
+
+  .namemenu {
+    font-size: 1rem;
+  }
+
+  .desc-menu {
+    font-size: 0.9rem;
+  }
+
+  .price-menu {
+    font-size: 1.1rem;
+  }
+
+  .Order {
+    padding: 10px 10px;
+    font-size: 0.8rem;
+  }
+
+  .modal-content {
+    max-width: 90%;
+    width: 100%;
+  }
+
+  .modal-header h2 {
+    font-size: 20px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 10px;
+    font-size: 13px;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .Seemenu-fullpage {
+    min-height: auto;
+  }
+
+  .menu-header {
+    padding: 12px 15px;
+  }
+
+  .btn-back {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  .Seemenu {
+    padding: 15px 12px;
+  }
+
+  .Seemenu-title {
+    font-size: 22px;
+    margin-bottom: 15px;
+  }
+
+  .Seemenu-description {
+    font-size: 13px;
+    margin-bottom: 15px;
+  }
+
+  .category-filter {
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+
+  .category-btn {
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+
+  .Menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px, 0.5fr));
+    gap: 10px;
+  }
+
+  .menu-card {
+    padding: 30px 10px;
+  }
+
+  .menu-image {
+    height: 70px;
+    width: 70px;
+  }
+
+  .namemenu {
+    font-size: 0.95rem;
+  }
+
+  .desc-menu {
+    font-size: 0.85rem;
+  }
+
+  .price-menu {
+    font-size: 1rem;
+  }
+
+  .Order {
+    padding: 8px 8px;
+    font-size: 0.75rem;
+  }
+
+  .modal-content {
+    max-width: 95%;
+    width: 100%;
+  }
+
+  .modal-header h2 {
+    font-size: 18px;
+  }
+
+  .form-group input,
+  .form-group textarea {
+    padding: 8px;
+    font-size: 14px;
+  }
+
+  .btn-submit,
+  .btn-cancel {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
+

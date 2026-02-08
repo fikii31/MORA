@@ -1,0 +1,168 @@
+.contact {
+  position: relative;
+  max-width: 100%;
+  min-height: 100vh;
+  padding: 50px 20px;
+  background-color: #f9f9f9;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact-title {
+  position: relative;
+  font-size: 2.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #333333;
+}
+
+.contact form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  max-width: 800px;
+  width: 100%;
+  border: 1px solid black;
+  border-radius: 4px;
+  padding: 30px 34px;
+  gap: 15px;
+}
+
+.contact input {
+  position: relative;
+  padding: 15px 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.contact input:focus {
+  outline: none;
+  border-color: #8b6f47;
+}
+
+.contact textarea {
+  position: relative;
+  padding: 15px 12px;
+  border: 1px solid black;
+  border-radius: 4px;
+  font-size: 1rem;
+  min-height: 120px;
+  resize: vertical;
+  transition: border-color 0.3s ease;
+}
+
+.contact textarea:focus {
+  outline: none;
+  border-color: #8b6f47;
+}
+
+.contact button {
+  position: relative;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 14px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
+}
+
+.contact button:hover {
+  background-color: transparent;
+  color: #000000;
+  border: 1px solid #000000;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .contact {
+    padding: 40px 20px;
+  }
+
+  .contact-title {
+    font-size: 2.2rem;
+    margin-bottom: 35px;
+  }
+
+  .contact form {
+    padding: 25px 28px;
+  }
+}
+
+/* Mobile Tablet */
+@media (max-width: 768px) {
+  .contact {
+    padding: 30px 20px;
+    min-height: auto;
+  }
+
+  .contact-title {
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+  }
+
+  .contact form {
+    max-width: 100%;
+    padding: 20px 20px;
+    gap: 12px;
+  }
+
+  .contact input {
+    padding: 12px 10px;
+    font-size: 1rem;
+  }
+
+  .contact textarea {
+    padding: 12px 10px;
+    font-size: 1rem;
+    min-height: 100px;
+  }
+
+  .contact button {
+    padding: 12px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Mobile Small */
+@media (max-width: 480px) {
+  .html{
+    scroll-behavior:smooth ;
+  }
+  .contact {
+    padding: 20px 15px;
+    min-height: 90vh;
+  }
+  .contact-title {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+
+  .contact form {
+    padding: 15px 15px;
+    gap: 10px;
+  }
+
+  .contact input {
+    padding: 10px 8px;
+    font-size: 16px;
+    border-radius: 3px;
+  }
+
+  .contact textarea {
+    padding: 10px 8px;
+    font-size: 16px;
+    min-height: 80px;
+    border-radius: 3px;
+  }
+
+  .contact button {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+}
