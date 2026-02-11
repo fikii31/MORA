@@ -1,9 +1,12 @@
 import './Rating.css';
+import {gambaricon} from '../data/DataMenu';
 import { useState, useEffect } from 'react';
 import { addReview, getReviews } from '../lib/RiviewDb';
 import type { ReviewData } from '../lib/RiviewDb';
 
 const Rating = () => {
+  const [isSuccess, setIsSuccess] = useState(false);
+  const [isError, setIsError]  = useState(false);
   const [showForm, setShowForm] = useState(false);
   const [reviews, setReviews] = useState<ReviewData[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -26,7 +29,7 @@ const Rating = () => {
         setReviews(data);
       } catch (err) {
         console.error('Failed to load reviews:', err);
-        // Fallback to localStorage if Supabase fetch fails
+        // mengambil data dari localstorage jika suppabase gagal terhubung
         const savedReviews = localStorage.getItem('moraReviews');
         if (savedReviews) {
           setReviews(JSON.parse(savedReviews));
@@ -66,7 +69,7 @@ const Rating = () => {
 
     setIsSubmitting(true);
     try {
-      // Add review to Supabase
+      // menambahkan data riview ke supabase
       const result = await addReview({
         nama: formData.name,
         email: formData.email,
@@ -86,7 +89,7 @@ const Rating = () => {
           date: new Date().toLocaleDateString('id-ID'),
           created_at: result[0].created_at,
         };
-
+        
         setReviews([newReview, ...reviews]);
         setCurrentSlide(0);
 
@@ -98,18 +101,26 @@ const Rating = () => {
           message: '',
         });
         setShowForm(false);
-        alert('Terima kasih untuk review Anda!');
+        //alert('Terima kasih untuk review Anda!');
+        setIsSuccess(true);
+        //setTimeout(() => {
+        //setIsSuccess(false);
+        //}, 10000);
       }
     } catch (err) {
       console.error('Error submitting review:', err);
-      alert('Gagal mengirim review. Silakan coba lagi.');
+      //alert('Gagal mengirim review. Silakan coba lagi.');
+      setIsError(true);
+        //setTimeout(() => {
+          //setIsError(false);
+        //}, 5000);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const handleNextSlide = () => {
-    const maxSlide = Math.ceil(reviews.length / reviewsPerPage) - 1;
+    const maxSlide = Math.ceil(reviews.length / reviewsPerPage) -1;
     if (currentSlide < maxSlide) {
       setCurrentSlide(currentSlide + 1);
     }
@@ -148,6 +159,29 @@ const Rating = () => {
 
   return (
     <section className="rating" id="Rating">
+      {/*notifikasi sukses*/}
+      {isSuccess && (
+      <div className = "notification-success">
+        <span className="icon"><img src={gambaricon.icon}></img></span>
+        <div className="message">
+          <h4>Berhasil</h4>
+          <p>Terimakasih ulasannya</p>
+        </div>
+        <button className="close-button"  onClick={() => setIsSuccess(false)}> OKE </button>
+      </div>
+      )}
+      {/*notifikasi error*/}
+      {isError && (
+        <div className="notification-error">
+          <span className="icon"><img src={gambaricon.icon}></img></span>
+          <div className="message-error">
+            <h4>Gagal</h4>
+            <p>waduh, sepertinya jaringan anda bermasalah.coba setelah jaringan anda lancar kembali ya...</p>
+          </div>
+          <button className="close-btn-error" onClick={() => setIsError(false)}>OKE</button>
+        </div>
+      )}
+
       <div className="rating-container">
         <h2 className="rating-title">Customer Reviews & Ratings</h2>
         <p className="rating-subtitle">

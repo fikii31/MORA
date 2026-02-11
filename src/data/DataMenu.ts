@@ -2,6 +2,7 @@ import cappuccino from '../assets/cap.png';
 import espreso from '../assets/espreso.jpg';
 import matcha from '../assets/matcha.png';
 import croissant from '../assets/cro.jpg';
+import icon from '../assets/icon.png';
 
 
 export interface MenuItem {
@@ -122,3 +123,8 @@ export const gambarmenu = {
     matcha,
     croissant
 };
+
+/*icon*/
+export const gambaricon ={
+    icon
+}

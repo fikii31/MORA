@@ -40,7 +40,7 @@ const Menu = () => {
                 {/* Promo Carousel */}
                 <div className="promo-carousel">
                     <button 
-                        className="carousel-btn prev-btn"
+                        className="prev-btn"
                         onClick={handlePrevSlide}
                     >
                         ❮
@@ -69,7 +69,7 @@ const Menu = () => {
                     </div>
 
                     <button 
-                        className="carousel-btn next-btn"
+                        className="next-btn"
                         onClick={handleNextSlide}
                     >
                         ❯

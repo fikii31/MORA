@@ -132,7 +132,7 @@
 /* Mobile Small */
 @media (max-width: 480px) {
   .html{
-    scroll-behavior:smooth ;
+    scroll-behavior:smooth;
   }
   .contact {
     padding: 20px 15px;
