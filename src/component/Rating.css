@@ -492,9 +492,9 @@
 @media (max-width: 480px) {
   .rating {
     padding: 30px 15px;
-    min-height: 90vh;
+    min-height: 60vh;
   }
-  
+
   .rating-title {
     bottom: 30px;
     font-size: 1.6rem;
@@ -511,22 +511,19 @@
   .reviews-carousel-container {
     width: 100%;
     max-width: 480px;
-    overflow: hidden;
-    margin: 10px auto;
-    
   }
 
   .reviews-list {
     display: flex;
-    flex-direction:column;
-    transition: transform 0.4s ease-in-out;
-    gap: 22px;
+    gap: 20px;
+    overflow: hidden;
+    justify-content: center;
+    transition: transform 0.3s ease;
   }
 
   .review-card {
-    min-width: 50%;
-    height: 240px;
-    box-sizing: border-box;
+    flex: 0 0 auto;
+    width: 80%;
 
   }
 
@@ -581,11 +578,11 @@
   }
 
   .prev-btn {
-    left: 0;
+    left: 18px;
   }
 
   .next-btn {
-    right: 0;
+    right: 18px;
   }
 
   .carousel-indicators {

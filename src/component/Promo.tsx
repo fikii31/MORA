@@ -1,33 +1,42 @@
-import './Menu.css';
+import './Promo.css';
 import { promoItems } from '../data/DataMenu';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 
 const Menu = () => {
     const [currentSlide, setCurrentSlide] = useState(0);
     const autoSlideInterval = 5000; // Auto slide every 5 seconds
+    const [isPaused, setIsPaused]= useState(false);
 
     // Auto slide functionality
     useEffect(() => {
+
+        if (isPaused) return;
+
         const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % promoItems.length);
+            setCurrentSlide(prev => (prev + 1) % promoItems.length);
         },  autoSlideInterval);
 
         return () => clearInterval(interval);
-    }, []);
+    },[isPaused]);
 
     const handlePrevSlide = () => {
-        setCurrentSlide((prev) => (prev - 1 + promoItems.length) % promoItems.length);
+        setIsPaused(true);
+        setCurrentSlide(prev => (prev - 1 + promoItems.length) % promoItems.length);
     };
 
     const handleNextSlide = () => {
-        setCurrentSlide((prev) => (prev + 1) % promoItems.length);
+        setIsPaused(true);
+        setCurrentSlide(prev => (prev + 1) % promoItems.length);
     };
 
     const handleIndicatorClick = (index: number) => {
         setCurrentSlide(index);
     };
 
-    const currentPromo = promoItems[currentSlide];
+    const currentPromo = useMemo(
+        () => promoItems[currentSlide],[currentSlide]
+    );
+    if (!promoItems.length)return null;
 
     return (
         <section className="menu" id="Menu">
@@ -42,6 +51,7 @@ const Menu = () => {
                     <button 
                         className="prev-btn"
                         onClick={handlePrevSlide}
+                        aria-label='Previous promotion'
                     >
                         ❮
                     </button>
@@ -71,6 +81,7 @@ const Menu = () => {
                     <button 
                         className="next-btn"
                         onClick={handleNextSlide}
+                        aria-label='Next promotion'
                     >
                         ❯
                     </button>

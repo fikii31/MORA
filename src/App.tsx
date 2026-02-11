@@ -1,7 +1,7 @@
 import { Routes, Route, useLocation } from 'react-router-dom'
 import Hero from './component/Hero'
 import Navbar from './component/Navbar'
-import Menu from './component/Menu'
+import Promo from './component/Promo'
 import Story from './component/Story'
 import VisitMe from './component/VisitMe'
 import Rating from './component/Rating'
@@ -24,7 +24,7 @@ function App() {
                 <Hero />
               </section>
               <section className="Menu" id="Menu">
-                <Menu />
+                <Promo />
               </section>
               <section className="Story" id="Story">
                 <Story />

@@ -4,6 +4,13 @@ import { useState, useEffect } from 'react';
 import { addReview, getReviews } from '../lib/RiviewDb';
 import type { ReviewData } from '../lib/RiviewDb';
 
+
+
+const getReviewsPerPage = () => {
+  if (window.innerWidth <= 640) return 1
+  if (window.innerWidth <= 790) return 3
+  return 3
+}
 const Rating = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [isError, setIsError]  = useState(false);
@@ -18,9 +25,21 @@ const Rating = () => {
     message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const reviewsPerPage = 3;
 
   // Load reviews from Supabase on component mount
+
+  const [reviewsPerPage, setreviewsPerPage] =
+  useState(getReviewsPerPage());
+
+  useEffect(() => {
+    const handleResize = () => {
+      setreviewsPerPage(getReviewsPerPage());
+      setCurrentSlide(0);
+    };
+    window.addEventListener('resize', handleResize);
+    return() => window.removeEventListener('resize', handleResize);
+  },[]);
+    
   useEffect(() => {
     const loadReviews = async () => {
       setIsLoading(true);
@@ -120,8 +139,8 @@ const Rating = () => {
   };
 
   const handleNextSlide = () => {
-    const maxSlide = Math.ceil(reviews.length / reviewsPerPage) -1;
-    if (currentSlide < maxSlide) {
+    const maxSlide = Math.ceil(reviews.length/reviewsPerPage) -1;
+    if (currentSlide < maxSlide){
       setCurrentSlide(currentSlide + 1);
     }
   };
